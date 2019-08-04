@@ -1,3 +1,6 @@
+import re
+
+
 CHAR_NUMBER_MAP = {
 	'A': '2', 'B': '2','C': '2',
 	'D': '3', 'E': '3','F': '3',
@@ -20,8 +23,17 @@ NUMBER_CHAR_MAP = {
 	'9': ['W', 'X', 'Y', 'Z']
 }
 
-def split_phone_number(phone_number):
-	substrings = phone_number.split('-')
-	return [substrings[0], substrings[1]], ''.join(substrings[2], substrings[3])
+def clean_input(phone_number):
+	return re.sub('[^0-9A-Z]', '', phone_number)
 
 
+def is_valid_phone_number(phone_number):
+	if len(phone_number) == 10 or len(phone_number) == 11:
+		return True
+	return False
+
+
+def format_number(number):
+	prefix = number[0] + '-' if len(number) == 11 else ''
+	number = number[1:] if len(number) == 11 else number
+	return "{}{}-{}-{}".format(prefix, number[:3], number[3:6], number[6:])
