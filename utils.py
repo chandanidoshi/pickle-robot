@@ -1,7 +1,7 @@
 import re
 
 
-CHAR_NUMBER_MAP = {
+LETTER_TO_NUMBER_MAP = {
 	'A': '2', 'B': '2','C': '2',
 	'D': '3', 'E': '3','F': '3',
 	'G': '4', 'H': '4','I': '4',
@@ -12,7 +12,7 @@ CHAR_NUMBER_MAP = {
 	'W': '9', 'X': '9','Y': '9', 'Z': '9'
 }
 
-NUMBER_CHAR_MAP = {
+NUMBER_TO_LETTERS_MAP = {
 	'2': ['A', 'B', 'C'],
 	'3': ['D', 'E', 'F'],
 	'4': ['G', 'H', 'I'],
