@@ -1,4 +1,5 @@
 import re
+import pygtrie as trie
 
 
 LETTER_TO_NUMBER_MAP = {
@@ -24,7 +25,7 @@ NUMBER_TO_LETTERS_MAP = {
 }
 
 def clean_input(phone_number):
-	return re.sub('[^0-9A-Z]', '', phone_number)
+	return re.sub('[^0-9A-Z]', '', phone_number.upper())
 
 
 def is_valid_phone_number(phone_number):
@@ -37,3 +38,17 @@ def format_number(number):
 	prefix = number[0] + '-' if len(number) == 11 else ''
 	number = number[1:] if len(number) == 11 else number
 	return "{}{}-{}-{}".format(prefix, number[:3], number[3:6], number[6:])
+
+
+def build_dictionary_trie(list_of_words):
+	dictionary_trie = trie.Trie()
+	with open('dictionary.txt', 'r') as f:	# http://www.mieliestronk.com/corncob_caps.txt
+		for word in f:
+			if len(word) > 2 and len(word) < 10:
+				dictionary_trie[word] = True
+	return dictionary_trie
+
+
+
+
+
